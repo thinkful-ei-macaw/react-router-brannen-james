@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {} from './dummy-store';
+import ReactDom from 'react-dom';
+import Main from './main/main';
+import Note from './note/note';
+import Folder from './folder/folder';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends React.Component {
+  state = {
+    dummyStore: {}
+  }
+  
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+        </header>
+
+        <Main store={this.state.dummyStore}/>
+      </div>
+    )
+  }
 }
 
 export default App;
