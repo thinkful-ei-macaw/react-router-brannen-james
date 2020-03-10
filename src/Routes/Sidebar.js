@@ -1,4 +1,4 @@
-import React from 'React'
+import React from 'react'
 
 
 function Sidebar(props) {
@@ -6,7 +6,9 @@ function Sidebar(props) {
     // const folders = props.store.join()
 
     return (
-        <p></p>
+        <ul>
+            {props.folders.map(folder => <li onClick={() => props.history.push('folder/' + folder.id)} id={folder.id}>{folder.name}</li>)}
+        </ul>
     )
 }
 

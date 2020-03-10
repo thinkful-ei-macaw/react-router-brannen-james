@@ -1,18 +1,18 @@
 import React from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar'
-function Main(props) {
+function Nav(props) {
   return (
     <div className="App">
       <Header />
       <main>
         <div>
-          <Sidebar store={props.store.folders.map(folder => folder)} />
+          <Sidebar folders={props.store.folders} history={props.history} />
         </div>
-        <p>Content</p>
+
       </main>
     </div>
   )
 }
 
-export default Main;
+export default Nav;
