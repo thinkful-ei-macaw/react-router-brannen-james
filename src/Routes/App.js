@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {} from '../dummy-store';
+import { } from '../dummy-store';
 import { Route, Switch } from 'react-router-dom';
 import Main from './Main';
 import Folder from './Folder';
@@ -11,7 +11,7 @@ class App extends React.Component {
     dummyStore: {}
   }
 
-  
+
   render() {
     console.log(this.state.dummyStore);
 
@@ -22,11 +22,14 @@ class App extends React.Component {
     }
 
     return (
-        <Switch>
-          <Route exact path='/' component={Main} />
-          <Route path='/folder/' component={Folder} />
-          <Route componenet={NoMatch} />
-        </Switch>
+      <Switch>
+        <Route exact path='/' render={(routerProps) =>
+          <Main store={this.state.dummyStore}
+          />
+        } />
+        <Route path='/folder/' component={Folder} />
+        <Route componenet={NoMatch} />
+      </Switch>
     )
   }
 }
