@@ -5,12 +5,28 @@ import { Route, Switch } from 'react-router-dom';
 import Nav from './Nav';
 import Notelist from './Notelist';
 import Notepage from './Notepage';
+import DefaultPage from './DefaultPage';
 
 
 
 class App extends React.Component {
   state = {
     dummyStore: dummyStore
+  }
+
+  NoteList = () => {
+    return (
+      <div>
+            <Route path='/' render={(routerProps) =>
+              <Nav   {...routerProps} store={this.state.dummyStore}
+              />
+            } />
+            <Route path='/folder/:folderId'  render={(routerProps) =>
+            <DefaultPage   {...routerProps} store={this.state.dummyStore}
+            />
+          } />
+      </div>
+    )
   }
 
 
@@ -25,10 +41,6 @@ class App extends React.Component {
 
     return (
       <Switch>
-        <Route exact path='/' render={(routerProps) =>
-          <Nav   {...routerProps} store={this.state.dummyStore}
-          />
-        } />
         {/* <Route path='/' render={(routerProps) =>
           <Nav   {...routerProps} store={this.state.dummyStore}
           />
@@ -37,15 +49,12 @@ class App extends React.Component {
           <Nav   {...routerProps} store={this.state.dummyStore}
           />
         } /> */}
-        <Route exact path='/' component={Notelist} />
-        <Route path='/folder/:folderId' render={(routerProps) =>
-          <Notelist notes={this.state.dummyStore.notes.filter(note => note.folderId === routerProps.match.params.folderId)} />} />
-        <Route path='/note/:noteId' render={(routerProps) =>
-          <Notepage notes={this.state.dummyStore.notes.filter(note => note.folderId === routerProps.match.params.folderId)} />} />
+        <Route path='/' component={this.NoteList} />
         <Route component={NoMatch} />
       </Switch>
     )
   }
 }
+
 
 export default App;

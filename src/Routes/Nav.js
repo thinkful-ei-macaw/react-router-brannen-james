@@ -6,10 +6,12 @@ function Nav(props) {
     <div className="App">
       <Header />
       <main>
-        <div>
+        <div className="Sidebar">
           <Sidebar folders={props.store.folders} history={props.history} />
         </div>
-
+        <div className="content">
+          
+        </div>
       </main>
     </div>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 
 
 function Sidebar(props) {
-    console.log(props.store)
+    console.log(props.folders)
     // const folders = props.store.join()
 
     return (
