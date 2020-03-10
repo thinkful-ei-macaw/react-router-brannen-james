@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 class Notepage extends React.Component {
 
@@ -7,9 +7,10 @@ class Notepage extends React.Component {
     }
 
     render() {
+        
         return (
             <ul>
-                {this.props.notes.filter(display => <li>{display.name}</li>)}
+                <li>{this.props.notes.map(obj => obj.content)}</li>
             </ul>
         )
     }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 class Notelist extends React.Component {
 
@@ -10,7 +11,7 @@ class Notelist extends React.Component {
         return (
             <ul>
                 <div>
-                    {this.props.notes.map(display => <li id={display.id}>{display.content}</li>)}
+                    {this.props.notes.map(display => <li><Link to={`/note/${display.id}`}>{display.name}</Link></li>)}
                 </div>
             </ul>
         )

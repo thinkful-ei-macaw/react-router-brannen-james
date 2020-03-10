@@ -10,24 +10,7 @@ import DefaultPage from './DefaultPage';
 
 
 class App extends React.Component {
-  state = {
-    dummyStore: dummyStore
-  }
-
-  NoteList = () => {
-    return (
-      <div>
-            <Route path='/' render={(routerProps) =>
-              <Nav   {...routerProps} store={this.state.dummyStore}
-              />
-            } />
-            <Route path='/folder/:folderId'  render={(routerProps) =>
-            <DefaultPage   {...routerProps} store={this.state.dummyStore}
-            />
-          } />
-      </div>
-    )
-  }
+  state = dummyStore;
 
 
   render() {
@@ -40,18 +23,29 @@ class App extends React.Component {
     }
 
     return (
-      <Switch>
-        {/* <Route path='/' render={(routerProps) =>
-          <Nav   {...routerProps} store={this.state.dummyStore}
-          />
-        } />
-        <Route exact path='/' render={(routerProps) =>
-          <Nav   {...routerProps} store={this.state.dummyStore}
-          />
-        } /> */}
-        <Route path='/' component={this.NoteList} />
-        <Route component={NoMatch} />
-      </Switch>
+      <div> 
+        <h1>Always on the Page</h1>
+        <Switch>
+        <Route path='/folder/:folderId'  render={(routerProps) =>
+            <Nav store={this.state} />} />
+        <Route path='/note/:noteId' render={(routerProps) =>
+          <Nav folder={this.state.notes.filter(note => note.id === routerProps.match.params.noteId)} />} />
+          <Route path='/'  render={(routerProps) =>
+            <Nav store={this.state} />} />
+        </Switch>
+        <Switch>
+          <Route path='/folder/:folderId'  render={(routerProps) =>
+            <Notelist notes={this.state.notes.filter(note => note.folderId === routerProps.match.params.folderId)}
+            />} />
+          <Route path='/note/:noteId' render={(routerProps) =>
+          <Notepage notes={this.state.notes.filter(note => note.id === routerProps.match.params.noteId)} />}/>
+          <Route path='/' render={(routerProps) =>
+            <Notelist notes={this.state.notes}
+            />} />
+          <Route component={NoMatch} />
+        </Switch>
+      </div>
+      
     )
   }
 }
